@@ -89,7 +89,6 @@ declare global {
     HiddenSideBar?: boolean;
     MultiTagsCache?: boolean;
     KeepAlive?: boolean;
-    Locale?: string;
     Layout?: string;
     Theme?: string;
     DarkMode?: boolean;

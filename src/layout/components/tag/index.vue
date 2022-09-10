@@ -33,8 +33,7 @@ const {
   closeMenu,
   onMounted,
   onMouseenter,
-  onMouseleave,
-  transformI18n
+  onMouseleave
 } = useTags();
 
 const tabDom = ref();
@@ -492,7 +491,7 @@ onMounted(() => {
             :to="item.path"
             class="dark:!text-text_color_primary dark:hover:!text-primary"
           >
-            {{ transformI18n(item.meta.title) }}
+            {{ item.meta.title }}
           </router-link>
           <span
             v-if="
@@ -533,7 +532,7 @@ onMounted(() => {
         >
           <li v-if="item.show" @click="selectTag(key, item)">
             <component :is="toRaw(item.icon)" :key="key" />
-            {{ transformI18n(item.text) }}
+            {{ item.text }}
           </li>
         </div>
       </ul>
@@ -542,7 +541,7 @@ onMounted(() => {
     <ul class="right-button">
       <li>
         <span
-          :title="transformI18n('buttons.hsrefreshRoute')"
+          title="刷新路由"
           class="el-icon-refresh-right rotate"
           @click="onFresh"
         >
@@ -570,7 +569,7 @@ onMounted(() => {
                   :key="key"
                   style="margin-right: 6px"
                 />
-                {{ transformI18n(item.text) }}
+                {{ item.text }}
               </el-dropdown-item>
             </el-dropdown-menu>
           </template>

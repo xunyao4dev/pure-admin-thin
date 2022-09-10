@@ -6,11 +6,9 @@ import { emitter } from "/@/utils/mitt";
 import { routeMetaType } from "../types";
 import type { StorageConfigs } from "/#/index";
 import { routerArrays } from "/@/layout/types";
-import { transformI18n } from "/@/plugins/i18n";
 import { useAppStoreHook } from "/@/store/modules/app";
 import { remainingPaths, resetRouter } from "/@/router";
 import { storageSession, useGlobal } from "@pureadmin/utils";
-import { useEpThemeStoreHook } from "/@/store/modules/epTheme";
 import { useMultiTagsStoreHook } from "/@/store/modules/multiTags";
 
 const errorInfo = "当前路由配置不正确，请检查配置";
@@ -21,16 +19,6 @@ export function useNav() {
   /** 用户名 */
   const username: string =
     storageSession.getItem<StorageConfigs>("info")?.username;
-
-  /** 设置国际化选中后的样式 */
-  const getDropdownItemStyle = computed(() => {
-    return (locale, t) => {
-      return {
-        background: locale === t ? useEpThemeStoreHook().epThemeColor : "",
-        color: locale === t ? "#f4f4f5" : "#000"
-      };
-    };
-  });
 
   const getDropdownItemClass = computed(() => {
     return (locale, t) => {
@@ -62,8 +50,8 @@ export function useNav() {
   /** 动态title */
   function changeTitle(meta: routeMetaType) {
     const Title = getConfig().Title;
-    if (Title) document.title = `${transformI18n(meta.title)} | ${Title}`;
-    else document.title = transformI18n(meta.title);
+    if (Title) document.title = `${meta.title} | ${Title}`;
+    else document.title = meta.title;
   }
 
   /** 退出登录 */
@@ -153,7 +141,6 @@ export function useNav() {
     pureApp,
     username,
     avatarsStyle,
-    getDropdownItemStyle,
     getDropdownItemClass
   };
 }

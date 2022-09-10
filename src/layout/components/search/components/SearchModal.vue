@@ -3,7 +3,6 @@ import { useRouter } from "vue-router";
 import SearchResult from "./SearchResult.vue";
 import SearchFooter from "./SearchFooter.vue";
 import { useNav } from "/@/layout/hooks/useNav";
-import { transformI18n } from "/@/plugins/i18n";
 import { deleteChildren } from "@pureadmin/utils";
 import { useDebounceFn, onKeyStroke } from "@vueuse/core";
 import { ref, watch, computed, nextTick, shallowRef } from "vue";
@@ -70,7 +69,7 @@ function search() {
   resultOptions.value = flatMenusData.filter(
     menu =>
       keyword.value &&
-      transformI18n(menu.meta?.title)
+      menu.meta?.title
         .toLocaleLowerCase()
         .includes(keyword.value.toLocaleLowerCase().trim())
   );

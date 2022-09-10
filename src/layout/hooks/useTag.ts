@@ -13,7 +13,6 @@ import { isEqual } from "lodash-unified";
 import type { StorageConfigs } from "/#/index";
 import { useEventListener } from "@vueuse/core";
 import { useRoute, useRouter } from "vue-router";
-import { transformI18n, $t } from "/@/plugins/i18n";
 import { useMultiTagsStoreHook } from "/@/store/modules/multiTags";
 import { storageLocal, toggleClass, hasClass } from "@pureadmin/utils";
 
@@ -54,42 +53,42 @@ export function useTags() {
   const tagsViews = reactive<Array<tagsViewsType>>([
     {
       icon: refresh,
-      text: $t("buttons.hsreload"),
+      text: "重新加载",
       divided: false,
       disabled: false,
       show: true
     },
     {
       icon: close,
-      text: $t("buttons.hscloseCurrentTab"),
+      text: "关闭当前标签页",
       divided: false,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
     {
       icon: closeLeft,
-      text: $t("buttons.hscloseLeftTabs"),
+      text: "关闭左侧标签页",
       divided: true,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
     {
       icon: closeRight,
-      text: $t("buttons.hscloseRightTabs"),
+      text: "关闭右侧标签页",
       divided: false,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
     {
       icon: closeOther,
-      text: $t("buttons.hscloseOtherTabs"),
+      text: "关闭其他标签页",
       divided: true,
       disabled: multiTags.value.length > 2 ? false : true,
       show: true
     },
     {
       icon: closeAll,
-      text: $t("buttons.hscloseAllTabs"),
+      text: "关闭全部标签页",
       divided: false,
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
@@ -208,11 +207,9 @@ export function useTags() {
     currentSelect,
     scheduleIsActive,
     getContextMenuStyle,
-    $t,
     closeMenu,
     onMounted,
     onMouseenter,
-    onMouseleave,
-    transformI18n
+    onMouseleave
   };
 }

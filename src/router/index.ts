@@ -3,7 +3,6 @@ import { toRouteType } from "./types";
 import NProgress from "/@/utils/progress";
 import { findIndex } from "lodash-unified";
 import type { StorageConfigs } from "/#/index";
-import { transformI18n } from "/@/plugins/i18n";
 import { useMultiTagsStoreHook } from "/@/store/modules/multiTags";
 import { usePermissionStoreHook } from "/@/store/modules/permission";
 import {
@@ -103,9 +102,9 @@ router.beforeEach((to: toRouteType, _from, next) => {
     to.matched.some(item => {
       if (!item.meta.title) return "";
       const Title = getConfig().Title;
-      if (Title)
-        document.title = `${transformI18n(item.meta.title)} | ${Title}`;
-      else document.title = transformI18n(item.meta.title);
+      if (Title) document.title = `${item.meta.title} | ${Title}`;
+      // @ts-expect-error
+      else document.title = item.meta.title;
     });
   if (name) {
     if (_from?.name) {

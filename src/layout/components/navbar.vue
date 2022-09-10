@@ -8,8 +8,6 @@ import Breadcrumb from "./sidebar/breadCrumb.vue";
 import { deviceDetection } from "@pureadmin/utils";
 import topCollapse from "./sidebar/topCollapse.vue";
 import screenfull from "../components/screenfull/index.vue";
-import { useTranslationLang } from "../hooks/useTranslationLang";
-import globalization from "/@/assets/svg/globalization.svg?component";
 
 const {
   layout,
@@ -19,12 +17,8 @@ const {
   pureApp,
   username,
   avatarsStyle,
-  toggleSideBar,
-  getDropdownItemStyle,
-  getDropdownItemClass
+  toggleSideBar
 } = useNav();
-
-const { t, locale, translationCh, translationEn } = useTranslationLang();
 </script>
 
 <template>
@@ -52,38 +46,6 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
       <Notice id="header-notice" />
       <!-- 全屏 -->
       <screenfull id="header-screenfull" v-show="!deviceDetection()" />
-      <!-- 国际化 -->
-      <el-dropdown id="header-translation" trigger="click">
-        <globalization
-          class="navbar-bg-hover w-[40px] h-[48px] p-[11px] cursor-pointer outline-none"
-        />
-        <template #dropdown>
-          <el-dropdown-menu class="translation">
-            <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'zh')"
-              :class="['dark:!text-white', getDropdownItemClass(locale, 'zh')]"
-              @click="translationCh"
-            >
-              <IconifyIconOffline
-                class="check-zh"
-                v-show="locale === 'zh'"
-                icon="check"
-              />
-              简体中文
-            </el-dropdown-item>
-            <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'en')"
-              :class="['dark:!text-white', getDropdownItemClass(locale, 'en')]"
-              @click="translationEn"
-            >
-              <span class="check-en" v-show="locale === 'en'">
-                <IconifyIconOffline icon="check" />
-              </span>
-              English
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover">
@@ -97,14 +59,14 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
                 icon="logout-circle-r-line"
                 style="margin: 5px"
               />
-              {{ t("buttons.hsLoginOut") }}
+              退出系统
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
       <span
         class="el-icon-setting navbar-bg-hover"
-        :title="t('buttons.hssystemSet')"
+        title="打开项目配置"
         @click="onPanel"
       >
         <IconifyIconOffline icon="setting" />

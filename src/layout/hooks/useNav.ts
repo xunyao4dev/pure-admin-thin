@@ -63,7 +63,7 @@ export function useNav() {
   }
 
   function backHome() {
-    router.push("/welcome");
+    router.push("/dashboard");
   }
 
   function onPanel() {

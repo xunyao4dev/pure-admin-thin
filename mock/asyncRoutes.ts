@@ -27,6 +27,33 @@ const permissionRouter = {
   ]
 };
 
+const pipelineRouter = {
+  path: "/pipeline",
+  meta: {
+    icon: "set-up",
+    title: "流水线",
+    rank: 10
+  },
+  children: [
+    {
+      path: "/pipeline/projects",
+      name: "Projects",
+      component: "/pipeline/index",
+      meta: {
+        title: "项目列表"
+      }
+    },
+    {
+      path: "/pipeline/create",
+      name: "CreateProject",
+      component: "/pipeline/create",
+      meta: {
+        title: "创建项目"
+      }
+    }
+  ]
+};
+
 // 添加不同按钮权限到/permission/button页面中
 function setDifAuthority(authority, routes) {
   routes.children[1].meta.authority = [authority];
@@ -41,7 +68,7 @@ export default [
       if (query.name === "admin") {
         return {
           code: 0,
-          info: [setDifAuthority("v-admin", permissionRouter)]
+          info: [pipelineRouter, setDifAuthority("v-admin", permissionRouter)]
         };
       } else {
         return {

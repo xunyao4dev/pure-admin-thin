@@ -1,7 +1,7 @@
 import { Component } from "vue";
 export const routerArrays: Array<RouteConfigs> = [
   {
-    path: "/welcome",
+    path: "/dashboard",
     parentPath: "/",
     meta: {
       title: "首页",

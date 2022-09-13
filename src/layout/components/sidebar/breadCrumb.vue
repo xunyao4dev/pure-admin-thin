@@ -14,7 +14,7 @@ const multiTags: any = useMultiTagsStoreHook().multiTags;
 const isDashboard = (route: RouteLocationMatched): boolean | string => {
   const name = route && (route.name as string);
   if (!name) return false;
-  return name.trim().toLocaleLowerCase() === "Welcome".toLocaleLowerCase();
+  return name.trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
 };
 
 const getBreadcrumb = (): void => {
@@ -45,12 +45,12 @@ const getBreadcrumb = (): void => {
     if (path !== "/") matched.push(findRouteByPath(path, routes));
   });
 
-  if (currentRoute?.path !== "/welcome") matched.push(currentRoute);
+  if (currentRoute?.path !== "/dashboard") matched.push(currentRoute);
 
   if (!isDashboard(matched[0])) {
     matched = [
       {
-        path: "/welcome",
+        path: "/dashboard",
         parentPath: "/",
         meta: { title: "首页" }
       } as unknown as RouteLocationMatched
